@@ -3,26 +3,26 @@
     <div class="col-md-8">
       <ul>
         <li>
-          id: {{p.id}}
+          ID: {{p.id}}
         </li>
         <li>
-          name: {{p.name}}
+          Nome: {{p.name}}
         </li>
         <li>
-          description: {{p.description}}
+          Descrição: {{p.description}}
         </li>
         <li>
-          price: {{p.price}}
+          Preço: {{p.price}}
         </li>
         <li>
-          createdAt: {{p.createdAt}}
+          Criado em: {{p.createdAt | date: 'short'}}
         </li>
       </ul>
       <button (click)="deleteProduct(p.id!)" class="btn btn-danger">
-        Delete
+        Deletar
       </button>
       <button [routerLink]="['/product/edit', p.id]" class="btn btn-secondary">
-        Edit
+        Editar
       </button>
     </div>
     <div class="col-md-4">
