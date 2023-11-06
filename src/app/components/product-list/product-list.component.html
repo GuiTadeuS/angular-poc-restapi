@@ -1,0 +1,32 @@
+<div *ngFor="let p of products" class="card card-body mb-2">
+  <div class="row">
+    <div class="col-md-8">
+      <ul>
+        <li>
+          id: {{p.id}}
+        </li>
+        <li>
+          name: {{p.name}}
+        </li>
+        <li>
+          description: {{p.description}}
+        </li>
+        <li>
+          price: {{p.price}}
+        </li>
+        <li>
+          createdAt: {{p.createdAt}}
+        </li>
+      </ul>
+      <button (click)="deleteProduct(p.id!)" class="btn btn-danger">
+        Delete
+      </button>
+      <button [routerLink]="['/product/edit', p.id]" class="btn btn-secondary">
+        Edit
+      </button>
+    </div>
+    <div class="col-md-4">
+      <img [src]="p.imageURL" class="card-img">
+    </div>
+  </div>
+</div>
