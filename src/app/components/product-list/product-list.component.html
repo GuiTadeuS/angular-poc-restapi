@@ -1,32 +1,38 @@
 <div *ngFor="let p of products" class="card card-body mb-2">
   <div class="row">
-    <div class="col-md-8">
-      <ul>
-        <li>
-          ID: {{p.id}}
-        </li>
-        <li>
-          Nome: {{p.name}}
-        </li>
-        <li>
-          Descrição: {{p.description}}
-        </li>
-        <li>
-          Preço: {{p.price}}
-        </li>
-        <li>
-          Criado em: {{p.createdAt | date: 'short'}}
-        </li>
-      </ul>
-      <button (click)="deleteProduct(p.id!)" class="btn btn-danger">
-        Deletar
-      </button>
-      <button [routerLink]="['/product/edit', p.id]" class="btn btn-secondary">
-        Editar
-      </button>
-    </div>
-    <div class="col-md-4">
-      <img [src]="p.imageURL" class="card-img">
+    <div class="col-md-12">
+      <mat-expansion-panel (opened)="selectedProduct = p" (closed)="selectedProduct = null">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <img [src]="p.imageURL" class="card-img">
+          </mat-panel-title>
+          <mat-panel-description>
+            <p><strong>ID: </strong>{{p.id}}</p>
+          </mat-panel-description>
+          <mat-panel-description>
+            <p><strong>Nome: </strong>{{p.name}}</p>
+          </mat-panel-description>
+          <mat-panel-description>
+            <p> <strong>Descrição </strong>{{p.description}}</p>
+          </mat-panel-description>
+          <mat-panel-description>
+            <p> <strong>Preço: </strong>R${{p.price}}</p>
+          </mat-panel-description>
+
+        </mat-expansion-panel-header>
+        <!-- Aparece após clicar -->
+        <br>
+        <app-edit-product *ngIf="selectedProduct === p" [product]="selectedProduct"></app-edit-product>
+        <br>
+        <div *ngIf="selectedProduct === p">
+          <p><strong>Data de criação: </strong>{{p.createdAt | date : 'dd/MM/yyyy hh:mm'}}</p>
+          <mat-action-row>
+            <button (click)="deleteProduct(p.id!)" class="btn btn-danger">
+              Deletar
+            </button>
+          </mat-action-row>
+        </div>
+      </mat-expansion-panel>
     </div>
   </div>
 </div>

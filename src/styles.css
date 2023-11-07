@@ -42,3 +42,5 @@ body {
         transform: translate3d(0, -3px, 0) rotateZ(0.01deg);
     }
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

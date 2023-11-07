@@ -1,20 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
-
+import { MatDialog, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { Product } from '../../interfaces/product'
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent implements OnInit {
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private dialog: MatDialog) { }
+
+  selectedProduct: any = null;
 
   products: any = [];
 
-  product: any = {}
+  product: any = {};
 
   ngOnInit() {
     this.getProducts();
