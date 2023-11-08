@@ -1,8 +1,8 @@
-<div *ngFor="let p of products" class="card card-body mb-2">
+<div *ngFor="let p of products" class="card card-body mb-3">
   <div class="row">
     <div class="col-md-12">
       <mat-expansion-panel (opened)="selectedProduct = p" (closed)="selectedProduct = null">
-        <mat-expansion-panel-header>
+        <mat-expansion-panel-header collapsedHeight="120px" expandedHeight="120px">
           <mat-panel-title>
             <img [src]="p.imageURL" class="card-img">
           </mat-panel-title>
@@ -27,7 +27,7 @@
         <div *ngIf="selectedProduct === p">
           <p><strong>Data de criação: </strong>{{p.createdAt | date : 'dd/MM/yyyy hh:mm'}}</p>
           <mat-action-row>
-            <button (click)="deleteProduct(p.id!)" class="btn btn-danger">
+            <button (click)="openModal('confirmation', p.id)" class="btn btn-danger">
               Deletar
             </button>
           </mat-action-row>
@@ -36,3 +36,13 @@
     </div>
   </div>
 </div>
+
+<jw-modal id="confirmation" class="confirmation">
+  <p style="font-size: large;"><strong>Deseja deletar o produto?</strong></p>
+  <br>
+  <div style="display: flex;flex-direction: row;margin-bottom: 10px;justify-content: space-between;">
+    <button type="submit" class="btn btn-danger" (click)="deleteProduct('confirmation',selectedProduct.id)">Deletar
+    </button>
+    <button type="submit" class="btn btn-info" (click)="closeModal('confirmation')">Cancelar</button>
+  </div>
+</jw-modal>

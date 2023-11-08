@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
-import { MatDialog, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { Product } from '../../interfaces/product'
+import { ModalService } from '../_modal';
+
 
 @Component({
   selector: 'app-product-list',
@@ -10,7 +11,7 @@ import { Product } from '../../interfaces/product'
 })
 export class ProductListComponent implements OnInit {
 
-  constructor(private productService: ProductService, private dialog: MatDialog) { }
+  constructor(private productService: ProductService, private modalService: ModalService) { }
 
   selectedProduct: any = null;
 
@@ -26,6 +27,13 @@ export class ProductListComponent implements OnInit {
 
   }
 
+  openModal(text_id: string, product_id: any) {
+    this.modalService.open(text_id)
+  }
+
+  closeModal(text_id: string) {
+    this.modalService.close(text_id)
+  }
   getProducts(): void {
     this.productService.getProducts()
       .subscribe(
@@ -35,7 +43,7 @@ export class ProductListComponent implements OnInit {
     console.log('getProducts', this.products)
   }
 
-  deleteProduct(id: number): void {
+  deleteProduct(modal_id: string, id: number): void {
 
     this.productService.deleteProduct(id)
       .subscribe(
@@ -46,6 +54,6 @@ export class ProductListComponent implements OnInit {
         err => console.log(err)
       )
     console.log('deleteProduct', id)
+    this.closeModal(modal_id)
   }
-
 }

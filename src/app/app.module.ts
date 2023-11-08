@@ -13,6 +13,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { DetailsPanelComponent } from './components/details-panel/details-panel.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
+import { ModalModule } from './components/_modal';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { EditProductComponent } from './components/edit-product/edit-product.com
     FormsModule,
     MatExpansionModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    ModalModule
   ],
   providers: [],
   bootstrap: [AppComponent]

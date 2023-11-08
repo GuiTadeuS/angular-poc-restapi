@@ -45,7 +45,7 @@ export class ProductFormComponent implements OnInit {
 
       )
     console.log('submitProduct', this.product.id)
-    this.router.navigate(['/']);
+    this.router.navigate(['/product']);
   }
 
   updateProduct() {
